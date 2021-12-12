@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import express from 'express';
 import dotenv from 'dotenv';
+import helpmet from 'helmet';
 import morgan from 'morgan';
 import mongoSanitize from 'express-mongo-sanitize';
 
@@ -30,6 +31,8 @@ if (process.env.NODE_ENV == 'development') {
 app.use(express.json()); //use express.json() than the bodyParser.json()
 
 app.use(mongoSanitize());
+
+app.use(helpmet()); //HTTP headers security,
 
 
 //apis
