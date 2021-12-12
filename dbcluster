@@ -1,0 +1,6 @@
+username = doadmin
+password = 09etG2bq45p837lS
+host = xa-mongodb-1124571b.mongo.ondigitalocean.com
+port = 27017
+database = admin
+protocol = mongodb+srv
