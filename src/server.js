@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import mongoSanitize from 'express-mongo-sanitize';
 
 //error handler
 import errorHandler from './middleware/error.js'
@@ -21,11 +22,15 @@ const prefix = '[server-api]'
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(express.json()); //use express.json() than the bodyParser.json()
-
 if (process.env.NODE_ENV == 'development') {
   app.use(morgan('dev')); // middleware
 }
+
+
+app.use(express.json()); //use express.json() than the bodyParser.json()
+
+app.use(mongoSanitize());
+
 
 //apis
 app.use('/api/v1/auth', auth);
