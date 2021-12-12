@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import helpmet from 'helmet';
 import morgan from 'morgan';
 import mongoSanitize from 'express-mongo-sanitize';
+import hpp from 'hpp';
 
 //error handler
 import errorHandler from './middleware/error.js'
@@ -34,11 +35,11 @@ app.use(limiter);
 
 app.use(express.json()); //use express.json() than the bodyParser.json()
 
-app.use(mongoSanitize());
+app.use(mongoSanitize()); //mongo sanitize
 
 app.use(helpmet()); //HTTP headers security,
 
-
+app.use(hpp()); //param pollution
 
 
 
