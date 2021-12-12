@@ -16,6 +16,9 @@ import auth from './routes/auth.js';
 import contacts from './routes/contacts.js';
 import users from './routes/users.js';
 
+//rate-limit
+import limiter from './middleware/rateLimiter';
+
 dotenv.config({ path: './config/.env' }); //load .env variables
 db.connect();
 
@@ -27,12 +30,16 @@ if (process.env.NODE_ENV == 'development') {
   app.use(morgan('dev')); // middleware
 }
 
+app.use(limiter);
 
 app.use(express.json()); //use express.json() than the bodyParser.json()
 
 app.use(mongoSanitize());
 
 app.use(helpmet()); //HTTP headers security,
+
+
+
 
 
 //apis
