@@ -1,10 +1,12 @@
 import chalk from 'chalk';
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import helpmet from 'helmet';
 import morgan from 'morgan';
 import mongoSanitize from 'express-mongo-sanitize';
 import hpp from 'hpp';
+
 
 //error handler
 import errorHandler from './middleware/error.js'
@@ -41,7 +43,7 @@ app.use(helpmet()); //HTTP headers security,
 
 app.use(hpp()); //param pollution
 
-
+app.use(cors());
 
 //apis
 app.use('/api/v1/auth', auth);
